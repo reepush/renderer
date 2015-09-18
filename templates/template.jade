@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title Benchmark (jade)
+  body
+    .container
+    
+      nav.header
+        for item in navigationItems
+          .nav-item= item
+    
+      sidebar
+        for item in menuItems
+          .menu-item= item
+        
+      man
+        for item in textItems
+          p= item

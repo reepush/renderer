@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Benchmark (mustache)</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="header">
+      {{#navigationItems}}
+        <div class="nav-item">{{.}}</div>
+      {{/navigationItems}}
+      </nav>
+      <sidebar>
+      {{#menuItems}}
+        <div class="menu-item">{{.}}</div>
+      {{/menuItems}}
+      </sidebar>
+      <main>
+      {{#textItems}}
+        <p>{{.}}</p>
+      {{/textItems}}
+      </main>
+    </div>
+  </body>
+</html>

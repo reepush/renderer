@@ -1,0 +1,21 @@
+{
+  "name": "renderer",
+  "version": "0.0.1",
+  "description": "Render daemon for the sake of frontend freedom",
+  "main": "server.js",
+  "scripts": {
+    "generate": "node tools/generate.js > data.json",
+    "server": "node server.js & node daemon.js",
+    "standalone": "node standalone.js",
+    "all": "node server.js & node daemon.js & node standalone.js"
+  },
+  "author": "Grisha Pushkov <grisha@push.org.ru>",
+  "license": "WTFPL",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "mustache": "^2.1.3",
+    "lodash": "^3.10.1",
+    "lorem-ipsum": "^1.0.3"
+  }
+}
