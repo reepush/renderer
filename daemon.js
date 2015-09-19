@@ -16,7 +16,7 @@ http.createServer(function(req, res) {
     }
 
     res.writeHead(200, {'Content-Type': 'text/html'})
-    res.end(renderer.render('templates/' + query.file, query.data))
+    res.end(renderer.render(query.file, query.data))
 }).listen(3333, function() {
     console.log('Daemon is listening on 3333 port...')
 })
