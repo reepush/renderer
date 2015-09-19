@@ -1,35 +1,46 @@
-var express = require('express'),
-    fs      = require('fs'),
-    http    = require('http'),
-    app     = express(),
-    data    = require('./data.json')
+'use strict';
 
-var config = {
-  renderer: {
-    host: 'localhost',
-    port: 3333
-  }
-}
+/**
+ * Dependencies
+ */
+var express = require('express');
+var http    = require('http');
+var app     = express();
+var data    = require('./data.json');
+
+
+// Application setups
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/templates');
+app.set('renderer', { host: 'localhost', port: 3333 });
+
+
+/**
+ * Define custom template engine for renderer daemon.
+ */
+app.engine('jade', function(file, data, cb) {
+  var q = {};
+  q.host = app.get('renderer').host;
+  q.port = app.get('renderer').port;
+  q.path = '/?' + encodeURIComponent(
+    'data=' + JSON.stringify(data) +
+    '&file=' + file
+  );
+  http.request(q, function(res) {
+    var data = ''
+    res
+      .on('data', function(chunk) { data += chunk; })
+      .on('end', function() { cb(null, data); })
+    ;
+  }).end()
+});
+
 
 app.get('/', function(req, res) {
-  config.renderer.path = '/?' + encodeuricomponent(
-    'data=' + json.stringify(data) +
-    '&file=' + req.query.file
-  )
+  res.render('template.jade', data);
+});
 
-  http.request(config.renderer, function(response) {
-    var data = ''
-
-    response.on('data', function(chunk) {
-      data += chunk
-    })
-
-    response.on('end', function() {
-      res.send(data)
-    })
-  }).end()
+app.listen(app.get('port'), function() {
+  console.log('Server is listening on ' + app.get('port') + ' port...');
 })
 
-app.listen(3000, function() {
-  console.log('Server is listening on 3000 port...')
-})
