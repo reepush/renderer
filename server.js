@@ -1,7 +1,8 @@
 var express = require('express'),
     fs      = require('fs'),
     http    = require('http'),
-    app     = express()
+    app     = express(),
+    data    = require('./data.json')
 
 var config = {
   renderer: {
@@ -10,11 +11,9 @@ var config = {
   }
 }
 
-var data = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
-
 app.get('/', function(req, res) {
-  config.renderer.path = '/?' + encodeURIComponent(
-    'data=' + JSON.stringify(data) +
+  config.renderer.path = '/?' + encodeuricomponent(
+    'data=' + json.stringify(data) +
     '&file=' + req.query.file
   )
 
