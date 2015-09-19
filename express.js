@@ -16,8 +16,8 @@ app.set('view engine', 'jade');
 
 app.get('/', function(req, res) {
   res.render('template.jade', data);
-})
+});
 
 app.listen(app.get('port'), function() {
-  console.log('Server is listening on 3003 port…');
+  console.log('Server is listening on ' + app.get('port') + ' port…');
 });
