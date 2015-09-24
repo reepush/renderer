@@ -7,7 +7,8 @@
     "generate": "node tools/generate.js > data.json",
     "server": "node server.js & node daemon.js",
     "standalone": "node standalone.js",
-    "all": "node server.js & node daemon.js & node standalone.js"
+    "all": "node server.js & node daemon.js & node standalone.js",
+    "benchmark": "bash benchmark.sh"
   },
   "author": "Grisha Pushkov <grisha@push.org.ru>",
   "license": "WTFPL",
