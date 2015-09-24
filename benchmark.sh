@@ -14,7 +14,7 @@ STANDALONE_MEAN=$(echo $OUTPUT | grep -Eo 'Time per request: (\d+.\d+) \[ms\] \(
 STANDALONE_MAX=$(echo $OUTPUT | grep -Eo '\d+ \(longest request\)' | grep -Eo '\d+')
 
 echo "
-mertic  With daemon   Standalone
+metric  With daemon   Standalone
 mean    $SERVER_MEAN  $STANDALONE_MEAN
 max     $SERVER_MAX   $STANDALONE_MAX
 " | column -t
